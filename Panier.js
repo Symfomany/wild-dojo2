@@ -16,16 +16,14 @@
 function checkout() {
   // Le Panier
   const panier = {
-    prixTTC: 0,
     title: "Mon Super Panier",
+    prixTTC: 0,
     pays: "France",
     paypal: false,
-    dateCreated: new Date(),
     promotion: 15, // pourcentage
     tva: function() {
-      // pourcentage
       if (this.pays === "France") {
-        return 20;
+        return 20; // pourcentage
       } else if (this.pays === "UK") {
         return 10;
       }
@@ -35,9 +33,9 @@ function checkout() {
       if (this.paypal) {
         return 0;
       }
-
       return this.prixTTC * 0.25;
     },
+
     articles: [
       {
         title: "Article One",
@@ -62,7 +60,8 @@ function checkout() {
         title: "Article Four",
         quantity: 3,
         prix: 52,
-        code: "fr"
+        code: "fr",
+        reduction: 10
       },
       {
         title: "Article Five",
@@ -75,8 +74,8 @@ function checkout() {
         title: "Article Six",
         quantity: 2,
         prix: 20,
-        code: "fr"
-        // reduction: 1
+        code: "fr",
+        reduction: 5
       },
       {
         title: "Article Seven",
@@ -86,40 +85,40 @@ function checkout() {
       }
     ]
   };
+
   // your code here...
   let somme = 0;
-  panier.articles.forEach(element => {
-    if (element.code == "fr") {
-      /*console.log(element.quantity);
-      console.log(element.prix);*/
+  for (const element of panier.articles) {
+    if (element.code === "fr") {
       if (element.reduction) {
-        // console.log(element.reduction);
-        somme +=
-          element.quantity * element.prix -
-          element.reduction +
-          (element.quantity * element.prix - element.reduction) *
-            panier.tva() /
-            100;
+        somme = somme + (element.prix * element.quantity - element.reduction);
+        //console.log(somme);
       } else {
-        somme +=
-          element.quantity * element.prix +
-          element.quantity * element.prix * panier.tva() / 100;
+        somme = somme + element.prix * element.quantity;
+        //console.log(somme);
       }
+
+      //  console.log(element.prix * element.quantity);
     }
-  });
-  console.log(somme);
-
-  panier.prixTTC = somme;
-
-  console.log(panier.shipping());
-
-  let total = somme + panier.shipping();
+  }
+  let total = somme - somme * panier.promotion / 100;
+  total = total + total * panier.tva() / 100;
   console.log(total);
-  console.log(`Le prix TTC du Panier est de ${total}€`);
-  //console.log(panier.promotion);
+  panier.prixTTC = total;
+  console.log(panier.prixTTC);
+  let prixLivraison = panier.shipping();
+  console.log(prixLivraison);
+  let prixTotal = panier.prixTTC + prixLivraison;
+  console.log(prixTotal);
+  console.log(`Le prix total à payer est de ${prixTotal}`);
+  // console.log(somme);
+  // const somme = element.prix * element.quantity;
 
-  //console.log(panier.tva());
-  //console.log(panier.shipping());
+  // let somme = 0;
+  // for (const element.fr of panier){
+  // somme = somme + element.fr;
+  // }
+  // console.log(panier.prixTTC);
 
   return panier;
 }
