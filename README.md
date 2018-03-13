@@ -6,7 +6,7 @@ Calculer le Prix TTC du Panier (propriété prixTTC de l'Objet Panier) en prenan
 * Le prix, la quantité et la possible réduction des produits
 * La promotion sur le panier (en pourcentage)
 * La TVA (en fonction du pays)
-* Les frais de livraison (shipping)
+* Les frais de livraison sur le panier (shipping)
 
 Le Resultat retournera la phrase suivante:
 "Le Prix TTC du Panier est de 1640€"

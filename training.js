@@ -1,3 +1,5 @@
+// construire un objet
+
 const panier = {
   title: "Mon Panier",
   prix: 12,
@@ -8,6 +10,7 @@ const panier = {
   }
 };
 
+// parcourir un tableau
 const tableau = [12, 3, 4, 8];
 
 let somme = 0;
