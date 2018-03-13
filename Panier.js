@@ -4,14 +4,15 @@
  * But: Calculer le Prix TTC du Panier
  *
  */
-function checkout(promotion = 20) {
+function checkout() {
+  // Le Panier
   const panier = {
     prixTTC: 0,
     title: "Mon Super Panier",
     pays: "France",
     paypal: false,
     dateCreated: new Date(),
-    promotion,
+    promotion: 20, ,
     tva: function() {
       if (this.pays === "France") {
         return 20;
