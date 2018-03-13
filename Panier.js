@@ -12,7 +12,7 @@ function checkout() {
     pays: "France",
     paypal: false,
     dateCreated: new Date(),
-    promotion: 20, ,
+    promotion: 15,
     tva: function() {
       if (this.pays === "France") {
         return 20;

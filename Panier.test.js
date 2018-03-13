@@ -5,7 +5,7 @@ const assert = require("chai").assert; // Librarie Chai : http://chaijs.com/guid
  * All Suite Test
  */
 describe("Suite test in Panier Dojo", () => {
-  it("test if promotion est 20", done => {
+  it("test si le panier est bon", done => {
     let articles = checkout();
     assert.equal(articles.length, 5);
     done();
